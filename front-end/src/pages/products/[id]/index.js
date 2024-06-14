@@ -100,28 +100,7 @@ const ProductDetail = (params) => {
       const relatedBooksResponse = await fetch(`${BASE_URL}/book?genre=${bookData.genre}`);
       const relatedBooksData = await relatedBooksResponse.json();
       setRelatedBooks(relatedBooksData);
-      // const authors = await fetch(`${BASE_URL}/author`).then(res => res.json())
-      // console.log(authors)
-      // for(const author of authors) {
-      //   if(author && (author.name == bookData.author)) {
-      //     setAuthor(author)
-      //     break
-      //   }
-      // }
-      // const recommendationsResponse = await fetch(
-      //   `${BASE_URL}/recommend?numberOfRecommendations=3`,
-      //   {
-      //     method: 'POST',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     body: JSON.stringify(bookData),
-      //   }
-      // );
-      // const recommendationsData = await recommendationsResponse.json();
-      // setRecommendations(recommendationsData);
-
-      console.log("con cac" + bookData)
-      // console.log(recommendations)
-
+    
       setIsLoading(false);
     } catch (error) {
       setError(true);
@@ -190,7 +169,7 @@ const ProductDetail = (params) => {
           <Box>Thông tin: {book.description}</Box>
           <Box display="flex">
             <Typography color="#C92127" fontWeight={600} fontSize={24}>
-              {formater.format(book.price)}
+              {formater.format(book.salePrice)}
             </Typography>
             <Typography
               sx={{ textDecoration: 'line-through' }}

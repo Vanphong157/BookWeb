@@ -1,8 +1,8 @@
-package com.is216.bookweb.config;
+package com.bookweb.bookweb.config;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.is216.bookweb.utils.JwtHelper;
+import com.bookweb.bookweb.utils.JwtHelper;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

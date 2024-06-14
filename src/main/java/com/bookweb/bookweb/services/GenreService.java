@@ -1,4 +1,4 @@
-package com.is216.bookweb.services;
+package com.bookweb.bookweb.services;
 
 
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.is216.bookweb.models.Genre;
-import com.is216.bookweb.models.User;
-import com.is216.bookweb.repositories.GenreRepository;
-import com.is216.bookweb.repositories.UserRepository;
+import com.bookweb.bookweb.models.Genre;
+import com.bookweb.bookweb.models.User;
+import com.bookweb.bookweb.repositories.GenreRepository;
+import com.bookweb.bookweb.repositories.UserRepository;
 
 
 @Service

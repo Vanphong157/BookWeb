@@ -1,4 +1,4 @@
-package com.is216.bookweb.config;
+package com.bookweb.bookweb.config;
 
 import java.util.List;
 

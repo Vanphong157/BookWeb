@@ -1,12 +1,12 @@
 
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.is216.bookweb.payload.ResponseData;
-import com.is216.bookweb.services.imp.LoginServiceImp;
-import com.is216.bookweb.utils.JwtHelper;
+import com.bookweb.bookweb.payload.ResponseData;
+import com.bookweb.bookweb.services.imp.LoginServiceImp;
+import com.bookweb.bookweb.utils.JwtHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

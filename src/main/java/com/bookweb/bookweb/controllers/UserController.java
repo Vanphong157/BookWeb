@@ -1,4 +1,4 @@
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.is216.bookweb.models.Book;
-import com.is216.bookweb.models.BoughtInformation;
-import com.is216.bookweb.models.User;
-import com.is216.bookweb.payload.ResponseData;
-import com.is216.bookweb.repositories.BookRepository;
-import com.is216.bookweb.repositories.UserRepository;
+import com.bookweb.bookweb.models.Book;
+import com.bookweb.bookweb.models.BoughtInformation;
+import com.bookweb.bookweb.models.User;
+import com.bookweb.bookweb.payload.ResponseData;
+import com.bookweb.bookweb.repositories.BookRepository;
+import com.bookweb.bookweb.repositories.UserRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 

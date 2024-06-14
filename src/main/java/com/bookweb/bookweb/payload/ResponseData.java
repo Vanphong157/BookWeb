@@ -1,4 +1,4 @@
-package com.is216.bookweb.payload;
+package com.bookweb.bookweb.payload;
 
 public class ResponseData {
     private int status = 200;

@@ -1,4 +1,4 @@
-package com.is216.bookweb.models;
+package com.bookweb.bookweb.models;
 
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;

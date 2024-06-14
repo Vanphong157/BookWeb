@@ -1,4 +1,4 @@
-package com.is216.bookweb;
+package com.bookweb.bookweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

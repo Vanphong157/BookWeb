@@ -1,4 +1,4 @@
-package com.is216.bookweb.services;
+package com.bookweb.bookweb.services;
 
 import java.util.Map;
 

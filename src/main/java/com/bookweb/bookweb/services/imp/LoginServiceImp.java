@@ -1,7 +1,7 @@
-package com.is216.bookweb.services.imp;
+package com.bookweb.bookweb.services.imp;
 import java.util.List;
 
-import com.is216.bookweb.models.User;
+import com.bookweb.bookweb.models.User;
 
 
 public interface LoginServiceImp {

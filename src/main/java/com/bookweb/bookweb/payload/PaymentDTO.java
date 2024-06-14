@@ -1,4 +1,4 @@
-package com.is216.bookweb.payload;
+package com.bookweb.bookweb.payload;
 
 import lombok.Builder;
 

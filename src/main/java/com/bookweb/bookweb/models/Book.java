@@ -1,4 +1,4 @@
-package com.is216.bookweb.models;
+package com.bookweb.bookweb.models;
 
 import java.math.BigDecimal;
 import java.util.List;

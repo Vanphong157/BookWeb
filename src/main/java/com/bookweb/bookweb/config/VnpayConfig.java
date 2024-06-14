@@ -1,6 +1,6 @@
-package com.is216.bookweb.config;
+package com.bookweb.bookweb.config;
 
-import com.is216.bookweb.utils.VnpayUtil;
+import com.bookweb.bookweb.utils.VnpayUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;

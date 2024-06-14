@@ -1,4 +1,4 @@
-package com.is216.bookweb.utils;
+package com.bookweb.bookweb.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 

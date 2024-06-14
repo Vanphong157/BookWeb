@@ -1,10 +1,10 @@
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
-import com.is216.bookweb.models.Order;
-import com.is216.bookweb.payload.ResponseData;
-import com.is216.bookweb.repositories.OrderRepository;
-import com.is216.bookweb.services.OrderService;
-import com.is216.bookweb.services.PaymentService;
+import com.bookweb.bookweb.models.Order;
+import com.bookweb.bookweb.payload.ResponseData;
+import com.bookweb.bookweb.repositories.OrderRepository;
+import com.bookweb.bookweb.services.OrderService;
+import com.bookweb.bookweb.services.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 

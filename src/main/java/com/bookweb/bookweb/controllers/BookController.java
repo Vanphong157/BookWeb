@@ -1,4 +1,4 @@
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.is216.bookweb.models.Book;
-import com.is216.bookweb.models.BookUpdateRequest;
-import com.is216.bookweb.payload.ResponseData;
-import com.is216.bookweb.services.BookService;
+import com.bookweb.bookweb.models.Book;
+import com.bookweb.bookweb.models.BookUpdateRequest;
+import com.bookweb.bookweb.payload.ResponseData;
+import com.bookweb.bookweb.services.BookService;
 
 
 

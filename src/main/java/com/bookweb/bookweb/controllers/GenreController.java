@@ -1,4 +1,4 @@
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.is216.bookweb.models.Genre;
-import com.is216.bookweb.services.GenreService;
+import com.bookweb.bookweb.models.Genre;
+import com.bookweb.bookweb.services.GenreService;
 
 
 

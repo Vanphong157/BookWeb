@@ -1,4 +1,5 @@
-package com.is216.bookweb.config;
+package com.bookweb.bookweb.config;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.is216.bookweb.models.User;
-import com.is216.bookweb.repositories.UserRepository;
+import com.bookweb.bookweb.models.User;
+import com.bookweb.bookweb.repositories.UserRepository;
 
 
 @Service

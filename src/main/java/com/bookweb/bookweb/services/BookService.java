@@ -1,4 +1,4 @@
-package com.is216.bookweb.services;
+package com.bookweb.bookweb.services;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 
-import com.is216.bookweb.models.Book;
-import com.is216.bookweb.repositories.BookRepository;
+import com.bookweb.bookweb.models.Book;
+import com.bookweb.bookweb.repositories.BookRepository;
 
 @Service
 public class BookService {

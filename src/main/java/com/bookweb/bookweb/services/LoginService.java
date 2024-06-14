@@ -1,12 +1,12 @@
-package com.is216.bookweb.services;
+package com.bookweb.bookweb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.is216.bookweb.models.User;
-import com.is216.bookweb.repositories.UserRepository;
-import com.is216.bookweb.services.imp.LoginServiceImp;
+import com.bookweb.bookweb.models.User;
+import com.bookweb.bookweb.repositories.UserRepository;
+import com.bookweb.bookweb.services.imp.LoginServiceImp;
 import java.util.List;
 
 /**

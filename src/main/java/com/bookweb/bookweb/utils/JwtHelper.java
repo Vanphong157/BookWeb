@@ -1,4 +1,4 @@
-package com.is216.bookweb.utils;
+package com.bookweb.bookweb.utils;
 
 import java.util.Date;
 import java.util.function.Function;

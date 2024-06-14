@@ -1,4 +1,4 @@
-package com.is216.bookweb.controllers;
+package com.bookweb.bookweb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.is216.bookweb.services.CloundinaryService;
+import com.bookweb.bookweb.services.CloundinaryService;
 
 @RestController
 @RequestMapping("/upload")

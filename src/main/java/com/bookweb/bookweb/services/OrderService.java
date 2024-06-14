@@ -1,4 +1,4 @@
-package com.is216.bookweb.services;
+package com.bookweb.bookweb.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.is216.bookweb.models.Book;
-import com.is216.bookweb.models.Order;
-import com.is216.bookweb.repositories.BookRepository;
-import com.is216.bookweb.repositories.OrderRepository;
+import com.bookweb.bookweb.models.Book;
+import com.bookweb.bookweb.models.Order;
+import com.bookweb.bookweb.repositories.BookRepository;
+import com.bookweb.bookweb.repositories.OrderRepository;
 
 
 @Service
