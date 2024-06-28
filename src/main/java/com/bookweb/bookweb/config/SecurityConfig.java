@@ -68,15 +68,15 @@ public class SecurityConfig {
                    
                     // User and Admin access
                     
-                    .requestMatchers(HttpMethod.POST, "/api/order/checkout").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers("/api/user/cart" ).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/api/order/checkout").permitAll()
+                    .requestMatchers("/api/user/cart" ).permitAll()
                     // Admin
-                    .requestMatchers(HttpMethod.GET,"/api/user/**","/api/order/**").hasAnyRole("ADMIN","USER")
-                    .requestMatchers(HttpMethod.POST,"/api/book/**", "/api/genre/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET,"/api/user/**","/api/order/**").permitAll()
+                    .requestMatchers(HttpMethod.POST,"/api/book/**", "/api/genre/**").permitAll()
                     .requestMatchers(HttpMethod.PATCH, "/api/book/**","/api/order/**", "/api/genre/**")
-                        .hasRole("ADMIN")
+                        .permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/api/book/**","/api/genre/**")
-                        .hasRole("ADMIN")
+                        .permitAll()
                     .anyRequest()
                         .authenticated());
                         // .requestMatchers("/api/**").hasAnyRole("ADMIN","USER")

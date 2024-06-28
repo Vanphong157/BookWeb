@@ -1,7 +1,10 @@
 package com.bookweb.bookweb.models;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -9,17 +12,29 @@ public class User {
     @Id
     private String id;
 
+    @Indexed(unique = true)
 
     private String username;
     private String password;
+    private String email;
     private String role;
     List<BoughtInformation> cart;
+
+    public User() {
+        cart = new ArrayList<>();
+    }
 
     public String getId() {
         return id;
     }
     public String getUsername() {
         return username;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
     public String getPassword() {
         return password;

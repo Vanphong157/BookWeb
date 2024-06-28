@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
-public class BoughtInformation {
+public class  BoughtInformation {
     String itemId;
     String title;
     Integer quantity;

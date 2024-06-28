@@ -4,6 +4,8 @@ import { useState, Fragment } from 'react'
 // ** Next Imports
 import Link from 'next/link'
 
+import { useRouter } from 'next/router'
+
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -61,9 +63,13 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 const RegisterPage = () => {
   // ** States
   const [values, setValues] = useState({
+    username: '',
     password: '',
+    email: '',
     showPassword: false
   })
+
+  const router = useRouter()
 
   // ** Hook
   const theme = useTheme()
@@ -78,6 +84,53 @@ const RegisterPage = () => {
 
   const handleMouseDownPassword = event => {
     event.preventDefault()
+  }
+
+  const handleClick = async () => {
+    try {
+      // Kiểm tra các giá trị đầu vào trước khi gửi
+      if (!values.username || !values.password || !values.email) {
+        alert('Vui lòng điền đầy đủ thông tin đăng ký')
+        return
+      }
+
+      const formData = new FormData()
+      formData.append('username', values.username)
+      formData.append('password', values.password)
+      formData.append('email', values.email)
+
+      formData.forEach((value, key) => {
+        console.log(key, value)
+      })
+
+      const response = await fetch('http://localhost:8080/login/signup', {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          username: values.username,
+          password: values.password,
+          email: values.email
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText)
+      }
+
+      const resp = await response.json()
+      if (resp.data) {
+        localStorage.setItem('token', resp.data)
+        alert('Đăng ký thành công')
+        router.push('/')
+      } else {
+        throw new Error('Invalid response data')
+      }
+    } catch (error) {
+      console.error('Đăng ký thất bại:', error)
+      alert('Đăng ký thất bại')
+    }
   }
 
   return (
@@ -163,7 +216,14 @@ const RegisterPage = () => {
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='username' label='Username' sx={{ marginBottom: 4 }} />
+            <TextField
+              autoFocus
+              fullWidth
+              id='username'
+              label='Username'
+              sx={{ marginBottom: 4 }}
+              onChange={handleChange('username')}
+            />
             <FormControl fullWidth>
               <InputLabel htmlFor='auth-register-password'>Password</InputLabel>
               <OutlinedInput
@@ -185,9 +245,24 @@ const RegisterPage = () => {
                   </InputAdornment>
                 }
               />
+              <TextField
+                autoFocus
+                fullWidth
+                id='email'
+                label='Email'
+                sx={{ marginTop: 4 }}
+                onChange={handleChange('email')}
+              />
             </FormControl>
 
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7, marginTop: 7 }}>
+            <Button
+              onClick={handleClick}
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              sx={{ marginBottom: 7, marginTop: 7 }}
+            >
               Đăng ký
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>

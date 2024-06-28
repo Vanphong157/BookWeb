@@ -8,18 +8,19 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.bookweb.bookweb.models.Book;
 import com.bookweb.bookweb.models.BoughtInformation;
+import com.bookweb.bookweb.models.Profile;
 import com.bookweb.bookweb.models.User;
 import com.bookweb.bookweb.payload.ResponseData;
 import com.bookweb.bookweb.repositories.BookRepository;
 import com.bookweb.bookweb.repositories.UserRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.bookweb.bookweb.services.CustomUserDetails;
 
 
 
@@ -78,6 +79,23 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatusCode.valueOf(400));
         }
+    }
+
+    @GetMapping("/profile")
+    /**
+     * Lấy thông tin người dùng
+     * @return thông tin người dùng
+     */
+    public Profile getUserProfile() {
+        //Tìm người dùng trong spring security dựa theo token được gửi đến
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var user = (CustomUserDetails) auth.getPrincipal();
+        String role = user.getAuthorities()
+                .stream()
+                .findFirst()
+                .get()
+                .getAuthority();
+        return new Profile(user.getUsername(), role);
     }
     
 }
