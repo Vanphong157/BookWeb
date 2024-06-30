@@ -70,7 +70,14 @@ public class UserController {
                 }
                 item.setTitle(book.getTitle());
                 item.setImage(book.getImages().get(0));
-                item.setPrice(book.getPrice());
+                if(book.getSalePrice().equals(0)) {
+                    item.setPrice(book.getPrice());
+                }
+                else{
+                    item.setPrice(book.getSalePrice());
+                }
+
+                
             }
             user.setCart(newCart);
             userRepository.save(user);
@@ -95,7 +102,10 @@ public class UserController {
                 .findFirst()
                 .get()
                 .getAuthority();
+
+                System.out.println(user.getUsername());
         return new Profile(user.getUsername(), role);
+        
     }
     
 }

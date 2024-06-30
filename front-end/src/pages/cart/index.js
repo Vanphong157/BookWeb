@@ -1,8 +1,10 @@
 import { Container, Grid, Box, Typography, Divider, Button, Link } from '@mui/material'
-import router from 'next/router';
+import DeleteIcon from '@mui/icons-material/Delete'
+import router from 'next/router'
 import { useEffect, useState } from 'react'
 import DefaultLayout from 'src/layouts/DefaultLayout'
-import formater from 'src/utils/formatCurrency';
+import QuantityInput from 'src/components/NumberInput'
+import formater from 'src/utils/formatCurrency'
 
 const getToken = () => {
   return localStorage.getItem('token')
@@ -12,26 +14,27 @@ const CartPage = () => {
   const [token, setToken] = useState('')
   const [cart, setCart] = useState([])
 
-  const updateCart = async (newCart) => {
+  const updateCart = async newCart => {
     await fetch(`${BASE_URL}/user/cart`, {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newCart)
     })
+    setCart(newCart) // Đảm bảo rằng trạng thái được cập nhật ngay lập tức
   }
+
   useEffect(() => {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       const tok = getToken()
       setToken(tok)
-      if(tok == null)
-        router.push('/pages/login')
+      if (tok == null) router.push('/pages/login')
       const fetchUser = async () => {
         try {
           const cart = await fetch(`${BASE_URL}/user/cart`, {
-            method: "GET",
+            method: 'GET',
             headers: {
               Authorization: `Bearer ${tok}`
             }
@@ -44,43 +47,63 @@ const CartPage = () => {
       }
       fetchUser()
     }
-      
-    
   }, [])
+
+  const handleIncrement = id => async () => {
+    const newCart = cart.map(item => {
+      if (item.itemId === id) {
+        return { ...item, quantity: item.quantity + 1 }
+      }
+      return item
+    })
+    console.log('Increment:', newCart) // Kiểm tra giá trị mới của newCart
+    await updateCart(newCart)
+  }
+
+  const handleDecrement = id => async () => {
+    const newCart = cart.map(item => {
+      if (item.itemId === id && item.quantity > 1) {
+        return { ...item, quantity: item.quantity - 1 }
+      }
+      return item
+    })
+    console.log('Decrement:', newCart) // Kiểm tra giá trị mới của newCart
+    await updateCart(newCart)
+  }
+
   return (
-    <Container sx={{ marginTop: "80px" }}>
+    <Container sx={{ marginTop: '80px' }}>
       <Grid container>
         <Grid item md={8}>
           {cart.map((item, i) => {
             return (
-              <Box key={i} marginTop={3} marginRight={4} bgcolor="white" borderRadius={1}>
-                <Box display="flex" padding={4}>
-                  <Box flexBasis="16%">
+              <Box key={i} marginTop={3} marginRight={4} bgcolor='white' borderRadius={1}>
+                <Box display='flex' padding={4}>
+                  <Box flexBasis='16%'>
+                    <Box overflow='hidden' width='120px' height='120px' component='img' src={item.image} />
+                  </Box>
+                  <Box display='flex' flexBasis='68%'>
                     <Box
-                      overflow="hidden"
-                      width="120px"
-                      height="120px"
-                      component="img"
-                      src={item.image}
-                    />
-                  </Box >
-                  <Box display="flex" flexBasis="68%">
-                    <Box display="flex" flexBasis="60%" flexDirection="column" justifyContent="space-between">
-                      <Typography fontSize={14}>
-                        {item.title}
-                      </Typography>
-                      <Typography fontWeight={700}>
-                        {formater.format(item.price)}
-                      </Typography>
+                      display='flex'
+                      flexBasis='60%'
+                      flexDirection='column'
+                      justifyContent='space-between'
+                      marginLeft={4}
+                    >
+                      <Typography fontSize={14}>{item.title}</Typography>
+                      <Typography fontWeight={700}>{formater.format(item.price)}</Typography>
                     </Box>
                   </Box>
-                  <Box flexBasis="28%" display="flex" alignItems="center" justifyContent="space-between">
-                    <input id={`item-${item.itemId}`} type='number' defaultValue={item.quantity} name='quantity'
-                      onChange={async (e) => {
+                  <Box flexBasis='28%' display='flex' alignItems='center' justifyContent='space-between'>
+                    <input
+                      id={`item-${item.itemId}`}
+                      type='number'
+                      defaultValue={item.quantity}
+                      name='quantity'
+                      onChange={async e => {
                         const id = e.target.id.split('-')[1]
                         const newCart = cart.map(v => {
-                          if (v.itemId != id)
-                            return v
+                          if (v.itemId != id) return v
                           return {
                             ...v,
                             quantity: e.target.value
@@ -88,34 +111,53 @@ const CartPage = () => {
                         })
                         await updateCart(newCart)
                         setCart(newCart)
-                      }} />
-                    <button id={item.itemId} type='submit' onClick={async (e) => {
-                      const newCart = cart.filter(v => v.itemId != e.target.id)
-                      await updateCart(newCart)
-                      setCart(newCart)
-                    }}>Loại bỏ</button>
+                      }}
+                    />
+                    <DeleteIcon
+                      id={item.itemId}
+                      type='submit'
+                      onClick={async e => {
+                        const newCart = cart.filter(v => v.itemId != e.target.id)
+                        await updateCart(newCart)
+                      }}
+                      sx={{
+                        '&:hover': {
+                          color: 'red',
+                          cursor: 'pointer'
+                        }
+                      }}
+                    >
+                      Loại bỏ
+                    </DeleteIcon>
                   </Box>
                 </Box>
               </Box>
             )
           })}
-
         </Grid>
-        <Grid item md={4} >
-          <Box marginTop={2} id="order_summary" sx={{ background: "white" }} borderRadius="10px" padding={4}>
+        <Grid item md={4}>
+          <Box marginTop={2} id='order_summary' sx={{ background: 'white' }} borderRadius='10px' padding={4}>
             <p>
-              Số lượng:{" "}
-              <span className="order-summary-values">
-                {cart.reduce((acc, curr) => acc + curr.quantity, 0)} sản phẩm
+              Số lượng:{' '}
+              <span className='order-summary-values'>
+                {cart.reduce((acc, curr) => acc + curr.quantity, 0)} Sản Phẩm
               </span>
             </p>
-            <Typography component="span" fontWeight={700}>
-              Tổng số tiền:{" "} {formater.format(cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0))}
+            <Typography component='span' fontWeight={700}>
+              Tổng số tiền: {formater.format(cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0))}
             </Typography>
           </Box>
           <Link href='/checkout'>
-            <Box textAlign="center" width="100%" margin="0 auto">
-              <Button sx={{ margin: "0 auto", bgcolor: "#CC0000", color: "white", width: "100%", fontSize: "20px", fontWeight: 700 }}
+            <Box textAlign='center' width='100%' margin='0 auto'>
+              <Button
+                sx={{
+                  margin: '0 auto',
+                  bgcolor: '#CC0000',
+                  color: 'white',
+                  width: '100%',
+                  fontSize: '20px',
+                  fontWeight: 700
+                }}
               >
                 Thanh Toán
               </Button>

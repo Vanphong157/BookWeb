@@ -42,7 +42,8 @@ public class LoginService implements LoginServiceImp{
         else {
         User user = new User();
         user.setUsername(signupResquest.getUsername());
-        user.setPassword(signupResquest.getPassword());
+        var encodePassword = passwordEncoder.encode(signupResquest.getPassword());
+        user.setPassword(encodePassword);
         user.setEmail(signupResquest.getEmail());
         user.setRole("USER");
 
